@@ -157,7 +157,7 @@ int main(int argc,char **argv)
 	}
 	ttl = id+TTL_ID_OFFSET;
 	gram[8] = ttl;
-	/* The is is used to detect packets we just sent, and is stored in the "ttl" field,
+	/* The id is used to detect packets we just sent, and is stored in the "ttl" field,
 	 * which is not used with broadcast packets. Beware when using this with
 	 * non-broadcast-packets */
 	
@@ -341,7 +341,7 @@ int main(int argc,char **argv)
 			exit(1);
 		}
 		if (*ttlptr == ttl) {
-			DPRINT ("Got local packge (TTL %i) on interface %i\n",*ttlptr,rcv_ifindex);
+			DPRINT ("Got local package (TTL %i) on interface %i\n",*ttlptr,rcv_ifindex);
 			continue;
 		}
 		
@@ -366,7 +366,7 @@ int main(int argc,char **argv)
 		{
 			if (ifs[x].ifindex == rcv_ifindex) continue; /* no bounces, please */
 
-			/* Set destination addr ip - port is set already*/
+			/* Set destination addr ip - port is set already */
 			bcopy(&(ifs[x].dstaddr.sin_addr.s_addr),(gram+16),4);	
 
 			DPRINT ("Sent to %s:%d on interface %i\n",
